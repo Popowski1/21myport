@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { Component, useState } from 'react';
+import Navigation from './Navigation';
 
-export default function Welcome() {
+
+function Header() { const [currentPage, handlePageChange] = useState("About");
+                    const renderPage = () => { switch(currentPage) {
+                                                case "About":
+                                                    return <About />;
+                                                    case "Resume":
+                                                    return <Resume />;
+                                                    case "Contact":
+                                                    return <Contact />;
+                                                    case "Portfolio":
+                                                    return <Portfolio />;
+                    
+
+}};
  
   return (
-    <div className="container">
-      <h1>Hello students!</h1>
-      <p>Today we will be learning about the following:</p>
-      <ul className="parent">
-        <li>React</li>
-        <li>Components</li>
-        <li>Props</li>
-        <li>Babel</li>
-      </ul>
+    <div>
+    <nav className="navBar">
+        <a className="navbar-item" rel="noreferrer" target="_blank" href="https://github.com/Popowski1?tab=repositories">
+    <span className="content">Shane Popowski</span>
+    </a>
+   
+    </nav>
+    <Navigation currentPage={currentPage} handlePageChange={handlePageChange}/>
+    <main><div>{renderPage(currentPage)}</div></main>
     </div>
   );
 }
+
+export default Header;
